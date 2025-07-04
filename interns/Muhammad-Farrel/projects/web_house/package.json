@@ -7,7 +7,7 @@
     "start": "node server",
     "dev": "node --watch server",
     "style": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
-    "drizzle:push" : "drizzle-kit push:mysql",
+    "drizzle:push": "drizzle-kit push:mysql",
     "drizzle:migrate": "drizzle-kit migrate:mysql",
     "drizzle:generate": "drizzle-kit generate:mysql"
   },
