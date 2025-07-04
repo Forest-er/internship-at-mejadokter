@@ -1,14 +1,12 @@
     import express from 'express';
     import path from 'path';
     import { fileURLToPath } from 'url';
-    import session from 'express-session';
     import { db } from './src/database/db.js';
     import { categories, house, buyers } from './src/database/schema.js';
-    import router from './src/database/schema.js';
   import { eq, and, gte, lte, sql, lt } from 'drizzle-orm';
     import multer from 'multer';
+    const port = process.env.PORT || 3000;
     
-
     const app = express();
     if (db) {
         console.log('database connected')
@@ -20,7 +18,6 @@
     const dirname = path.dirname(filename);
     const upload = multer({ storage: multer.memoryStorage() });
     app.use(express.static(path.join(dirname, 'src')));
-    app.set('view engine', 'ejs');
     app.set('public', path.join(dirname, 'public'));
 
     app.get('/', async (req, res, next) => {
@@ -171,18 +168,6 @@ app.post('/house', upload.single('picture'), async (req, res) => {
     }
 });
 
-
-
-    app.delete('/house/delete/:id', async (req, res) => {
-        const { id } = req.params;
-        try {
-            await db.delete(house).where(eq(house.id_house, id));
-            res.status(200).json({ message: "Rumah dihapus" });
-        } catch (err) {
-            res.status(500).json({ error: "Gagal hapus rumah" });
-        }
-    });
-
     app.get('/api/buyers', async (req, res, next)=> {
         try {
             const result = await db.select().from(buyers).innerJoin(house, eq(buyers.house_id, house.id_house));
@@ -206,7 +191,7 @@ app.post('/house/edit/:id', upload.single('picture'), async (req, res) => {
     contact
   } = req.body;
 
-  const picture = req.file ? req.file.originalname : null;
+  const picture = req.file ? `/uploads/${req.file.filename}` : null;
 
   try {
     await db.update(house)
@@ -272,6 +257,6 @@ app.post('/house/edit/:id', upload.single('picture'), async (req, res) => {
      });
 
 
-    app.listen(3000, () => {
+    app.listen(port, () => {
         console.log('server running')
     })

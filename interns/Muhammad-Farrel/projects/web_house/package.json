@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node server",
     "dev": "node --watch server",
-    "style": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch"
+    "style": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
+    "drizzle:push" : "drizzle-kit push:mysql",
+    "drizzle:migrate": "drizzle-kit migrate:mysql",
+    "drizzle:generate": "drizzle-kit generate:mysql"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +17,7 @@
   "description": "",
   "dependencies": {
     "autoprefixer": "^10.4.21",
+    "dotenv": "^17.0.1",
     "drizzle-orm": "^0.44.2",
     "ejs": "^3.1.10",
     "express": "^5.1.0",

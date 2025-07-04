@@ -1,0 +1,222 @@
+{
+  "info": {
+    "name": "Real Estate API",
+    "_postman_id": "e7d39f7f-a088-441c-8f0a-bf530b04a5c2",
+    "description": "Koleksi endpoint untuk kategori, rumah, dan pembeli.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET All Categories",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/categories",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "categories"]
+        }
+      }
+    },
+    {
+      "name": "GET Category by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/categories/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "categories", "1"]
+        }
+      }
+    },
+    {
+      "name": "POST Create Category",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "nameCat", "value": "Perumahan Baru", "type": "text" },
+            { "key": "detail", "value": "Kategori baru", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/category",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["category"]
+        }
+      }
+    },
+    {
+      "name": "POST Edit Category",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nameCat\": \"Nama Baru\",\n  \"detail\": \"Detail Baru\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/category/edit/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["category", "edit", "1"]
+        }
+      }
+    },
+    {
+      "name": "DELETE Category",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:3000/category/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["category", "1"]
+        }
+      }
+    },
+    {
+      "name": "GET All Houses",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/houses",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "houses"]
+        }
+      }
+    },
+    {
+      "name": "GET House by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/houses/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "houses", "1"]
+        }
+      }
+    },
+    {
+      "name": "POST Create House",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "multipart/form-data" }],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name", "value": "Rumah Contoh", "type": "text" },
+            { "key": "address", "value": "Jl. Mawar No. 1", "type": "text" },
+            { "key": "price", "value": "500000000", "type": "text" },
+            { "key": "bed", "value": "3", "type": "text" },
+            { "key": "bath", "value": "2", "type": "text" },
+            { "key": "sqft", "value": "120", "type": "text" },
+            { "key": "category_id", "value": "1", "type": "text" },
+            { "key": "seller", "value": "Pak Budi", "type": "text" },
+            { "key": "contact", "value": "08123456789", "type": "text" },
+            { "key": "picture", "type": "file", "src": "" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/house",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["house"]
+        }
+      }
+    },
+    {
+      "name": "POST Edit House",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "multipart/form-data" }],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name", "value": "Rumah Update", "type": "text" },
+            { "key": "alamat", "value": "Jl. Melati", "type": "text" },
+            { "key": "price", "value": "600000000", "type": "text" },
+            { "key": "bed", "value": "4", "type": "text" },
+            { "key": "bath", "value": "2", "type": "text" },
+            { "key": "sqft", "value": "150", "type": "text" },
+            { "key": "category_id", "value": "1", "type": "text" },
+            { "key": "seller", "value": "Ibu Sari", "type": "text" },
+            { "key": "contact", "value": "08129876543", "type": "text" },
+            { "key": "picture", "type": "file", "src": "" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/house/edit/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["house", "edit", "1"]
+        }
+      }
+    },
+    {
+      "name": "DELETE House",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:3000/house/delete/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["house", "delete", "1"]
+        }
+      }
+    },
+    {
+      "name": "GET All Buyers",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/buyers",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "buyers"]
+        }
+      }
+    },
+    {
+      "name": "POST Create Buyer",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "house_id", "value": "1", "type": "text" },
+            { "key": "nameB", "value": "Pembeli Baru", "type": "text" },
+            { "key": "contact", "value": "08987654321", "type": "text" },
+            { "key": "location", "value": "Bandung", "type": "text" },
+            { "key": "Message", "value": "Saya tertarik membeli", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/buyers/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["buyers", "1"]
+        }
+      }
+    }
+  ]
+}
