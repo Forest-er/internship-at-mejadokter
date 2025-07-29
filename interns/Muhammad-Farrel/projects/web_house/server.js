@@ -16,11 +16,22 @@
     
     const filename = fileURLToPath(import.meta.url);
     const dirname = path.dirname(filename);
-    const upload = multer({ storage: multer.memoryStorage() });
+    const storage = multer.diskStorage({
+        destination: (req, file, cb) => cb(null, 'src/uploads'),
+        filename: (req, file, cb) => {
+            const uniqueName = Date.now() + '-' + file.originalname;
+            cb(null, uniqueName);
+        }
+    });
+    const upload = multer({ storage });
     app.use(express.static(path.join(dirname, 'src')));
+    app.use('/uploads', express.static(path.join(dirname, 'src/uploads')));
     app.set('public', path.join(dirname, 'public'));
 
-    app.get('/', async (req, res, next) => {
+    app.get('/', (req, res, next) => {
+        res.sendFile(path.join(dirname, 'public/welcome.html'));
+    });
+    app.get('/home', async (req, res, next) => {
         res.sendFile(path.join(dirname, 'public/index.html'));
     })
     app.get('/api/categories', async (req, res, next) => {
@@ -81,13 +92,6 @@
         }
     });
 
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'public/uploads'),
-  filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname),
-});
-
-
 app.post('/house', upload.single('picture'), async (req, res) => {
   const { name, address, price, bed, bath, sqft, category_id, seller, contact } = req.body;
   const picture = req.file ? `/uploads/${req.file.filename}` : '';
@@ -96,16 +100,17 @@ app.post('/house', upload.single('picture'), async (req, res) => {
     await db.insert(house).values({
       name,
       address,
-      price, 
+      price,
       bed: parseInt(bed),
       bath: parseInt(bath),
       sqft,
       picture,
-      category_id: parseInt(category_id), 
+      category_id: parseInt(category_id),
       seller,
       contact
     });
-
+    console.log("req.file:", req.file);
+    console.log("path gambar:", picture);   
     res.redirect('/house');
   } catch (err) {
     console.error("Gagal menyimpan rumah:", err);

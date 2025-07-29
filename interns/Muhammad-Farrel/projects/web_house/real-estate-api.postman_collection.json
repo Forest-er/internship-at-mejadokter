@@ -124,10 +124,11 @@
             { "key": "bed", "value": "3", "type": "text" },
             { "key": "bath", "value": "2", "type": "text" },
             { "key": "sqft", "value": "120", "type": "text" },
+            { "key": "picture", "type": "file", "src": "" },
             { "key": "category_id", "value": "1", "type": "text" },
             { "key": "seller", "value": "Pak Budi", "type": "text" },
-            { "key": "contact", "value": "08123456789", "type": "text" },
-            { "key": "picture", "type": "file", "src": "" }
+            { "key": "contact", "value": "08123456789", "type": "text" }
+            
           ]
         },
         "url": {
@@ -153,10 +154,11 @@
             { "key": "bed", "value": "4", "type": "text" },
             { "key": "bath", "value": "2", "type": "text" },
             { "key": "sqft", "value": "150", "type": "text" },
+            { "key": "picture", "type": "file", "src": "" },
             { "key": "category_id", "value": "1", "type": "text" },
             { "key": "seller", "value": "Ibu Sari", "type": "text" },
-            { "key": "contact", "value": "08129876543", "type": "text" },
-            { "key": "picture", "type": "file", "src": "" }
+            { "key": "contact", "value": "08129876543", "type": "text" }
+            
           ]
         },
         "url": {
